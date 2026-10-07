@@ -1,0 +1,134 @@
+loads = []
+
+while True:
+    try:
+        spanLength = float(input("Enter Span Length: "))
+    except ValueError:
+        print("Error Syntax! Input Real Values")
+        continue
+    if spanLength <= 0:
+        print("Invalid Span Length. ")
+        continue
+    break
+
+print()
+print("Load_Type(P, W or M) Intensity(kN or kN-m) Distance(m); example P 50 4") 
+print()
+
+
+while True:
+    user_input = input("Enter Type, Load Value & Location: ")
+
+    
+    if user_input.strip().lower() == "done":
+        break
+
+    if user_input.strip() == "":
+        print("Empty input! Please type something.")
+        continue
+
+    try:
+        parts = user_input.split()
+        loadType = parts[0].strip().upper()
+
+        if loadType not in ["P", "W"]:
+            print("Invalid load type! Use 'P' for point load or 'W' for distributed load.")
+            continue
+
+        if loadType == "M":
+            if len(parts) !=  3:
+                print("Input Correct Values")
+                continue
+
+            if float(parts[2]) < 0 or float(parts[2]) > spanLength:
+                print("Distance must be Greater or Equal than 0 and Less than Span Length")
+                continue
+            
+            loadType = "Point Load"
+            loads.append({"Type": loadType, 
+                          "Intensity (kN-m)": float(parts[1]), 
+                          "Distance (m)": float(parts[2])}
+                          )
+        
+        if loadType == "P":
+            if len(parts) != 3:
+                print("Input Correct Values")
+                continue
+
+            if float(parts[2]) < 0 or float(parts[2]) > spanLength:
+                print("Distance must be Greater or Equal than 0 and Less than Span Length")
+                continue
+
+            loadType = "Point Load"
+            loads.append({"Type": loadType, 
+                          "Intensity (kN)": float(parts[1]), 
+                          "Distance (m)": float(parts[2])}
+                          )
+
+        elif loadType == "W":
+            if len(parts) != 5:
+                print("Input Correct Values")
+                continue 
+
+            if float(parts[3]) < 0 or float(parts[3]) > spanLength or float(parts[4]) < 0 or float(parts[4]) > spanLength:
+                print("Distance must be Greater or Equal than 0 and Less than Span Length")
+                continue
+
+            loadType = "Distributed Load"
+            loads.append({"Type": loadType, 
+                          "Intensity_1 (kN)": float(parts[1]),
+                          "Intensity_2 (kN)": float(parts[2]), 
+                          "Distance (m)": float(parts[3]), 
+                          "Distance_2 (m)": float(parts[4])}
+                          )
+
+    except ValueError:
+        print("Error Syntax! Input Valid Values")
+        continue
+
+loadsComp = loads.copy()
+
+def get_distance(load):
+    return load["Distance (m)"]
+
+loadsComp.sort(key = get_distance)
+
+def reactionCalculation(loadsComp, spanLength):
+    R_A = 0.0
+
+    for load in loadsComp:
+        if load["Type"] == "Point Load":
+            R_A += (load["Intensity (kN)"] * (spanLength - load["Distance (m)"])) / spanLength
+
+        if load["Type"] == "Distributed Load":
+            h1 = load["Intensity_1 (kN)"]
+            h2 = load["Intensity_2 (kN)"]
+            d1 = load["Distance (m)"]
+            d2 = load["Distance_2 (m)"]
+            dt = d2 - d1
+            centroid = dt / 2
+
+            if h1/h2 >= 1.0:
+                centroid = 2 * centroid * (2/3) 
+                area = 1/2 * (h1 - h2) * dt
+                leftOverArea = h2 * dt
+                LeftOverCentroid = dt / 2
+                
+            elif h1/h2 <= 1.0:
+                centroid = 2 * centroid * (1/3)
+                area = 1/2 * (h2 - h1) * dt
+                leftOverArea = h1 * dt
+
+            elif h1/h2 == 1.0:
+                centroid = centroid  
+                area = h1 * dt
+                leftOverArea = 0.0
+                LeftOverCentroid = 0.0
+
+            R_A += (area * (centroid + (spanLength - d2))) / spanLength + (leftOverArea * (LeftOverCentroid + (spanLength - d2))) / spanLength
+    
+    return R_A
+
+R_A = reactionCalculation(loadsComp, spanLength)
+
+print(f"The value is:  {R_A}")

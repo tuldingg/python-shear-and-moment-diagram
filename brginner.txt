@@ -1,0 +1,371 @@
+# Variable = A container for a value (string, integer, float, boolean)
+#            A variable behaves as if it was the value it contains
+
+# Strings "string"
+first_name = "Bro"
+food = "pizza"
+email = "Bro123@fake.com"
+
+# print(f"Hello {first_name}")
+# print(f"You like {food}")
+# print(f"Your email is: {email}")
+
+#Integers = a whole number
+age = 25
+quantity = 3
+num_of_students = 30
+
+# Float
+price = 10.99
+gpa = 3.2
+
+# Boolean
+
+is_student = False
+for_sale = True
+
+# if is_student:
+#    print("You are a student")
+# else:
+#    print("You are NOT a student")
+
+# Typecasting = the process of converting a variable from one data type to another
+#               str(), int(), float(), bool()
+
+name ="Hey"
+age = 25
+gpa = 3.2
+is_student = True
+
+age = str(age)
+age = age + "1"
+# name = bool(name) typecasting to boolean will check if theres input(true) or not(false)
+
+type(variable) #checks variable type
+
+# print(name)
+# print(type(first_name))
+# print(age)
+
+
+placeholder inside an f-string{}
+print(f"Hello {placeholder}! ")
+
+# input() = a function that prompts the user to enter data
+#           Returns the entered data as a string
+
+name = input("What is your name?: ")
+age = input("How old are you?: ")
+
+age = int(age)
+age = age + 1
+# or
+name = input("What is your name?: ")
+age = int(input("How old are you?: "))
+
+age = age + 1
+
+print(f"Hello {name}!")
+print("HAPPY BIRTHDAY!")
+print(f"You are {age} years old.")
+
+# Exercise 1 Rectangle Area Calc
+
+length = float(input("Enter the length: "))
+width = float(input("Enter the width: "))
+area = length * width
+
+print(f"area: {area} cm²")
+
+#Exercise 2 Shopping Cart Program
+
+item = input("What item would you like to buy?: ")
+price = float(input("What is the price?: "))
+quantity = int(input("How many items would you like?: "))
+total = price * quantity
+
+print(f"You have bought {quantity} quantities of {item} in the price of ${price}.")
+print(f"Total: ${total}")
+
+
+
+friends = 10
+# BASIC ARITHMETIC OPERATORS
+# ADDITION (+)
+# friends += 1 # "+=" an example of augmented assignment operator
+               #same as "friends = friends + 1"
+
+# SUBTRACTION (-)
+# friends -= 2 #same as "friends = friends - 2"
+
+# MULTIPLICATION (*)
+# friends *= 3 #same as "friends = friends * 3"
+
+# DIVISION (/)
+#friends /= 2  #same as "friends = friends / 2
+
+# EXPONENTS (**)
+# friends **= 2 #same as friends = friends ** 2
+                #read as friends raised to 2 or friends^2
+
+# MODULUS (%) (GIVES OUT THE REMAINDER ON DIVISION)
+# remainder = friends % 3
+
+print(remainder)
+
+
+
+x = 3.14
+y = 4
+z = 5
+
+#result = round (x) # round function
+#result = abs (y) # absolute value function
+#result = pow (y, 3) #power function
+#result = max(x,y,z) #maximum value function
+#result = min(x,y,z) #minimum value function
+
+
+print(result)
+
+
+
+
+
+import math #importing the math module
+
+x=9.2
+#print(math.pi) #type the name of the math module "math" and "pi" separated by a dot "math.pi"
+#print(math.e)
+
+#result = math.sqrt(x) #square root function
+#result = math.ceil(x) #ceiling function
+#result = math.floor(x) #floor function
+print(result)
+
+
+#CIRCUMFERENCE OF A CIRCLE
+
+import math
+
+radius = float(input("Enter the radius of the circle: "))
+
+circumference = 2 * math.pi * radius
+
+print(f"circumference = {round(circumference,4)}")
+
+#AREA OF A CIRCLE
+
+import math
+
+radius = float(input("Enter the radius of the circle: "))
+
+AREA = math.pi * pow(radius, 2)
+
+print(f"AREA = {round(AREA,4)}")
+
+#hypothenuse of a triangle
+
+import math
+
+opp = float(input("enter opposite side: "))
+adj = float(input("enter adjacent side: "))
+
+hyp = math.sqrt(pow(opp,2) + pow(adj,2))
+
+print(f"hypotenuse: {round(hyp,2)}")
+
+# if = Do some code only IF some condition is True
+#       Else do something else
+
+age = int(input("Enter your age: "))
+
+if age >= 100: #("age >= 100" a type of condition
+    print ("You are too old to sign up!")
+elif age >= 18: #elif (combined else if) does anything else if the above statement is not true
+    print ("You are now signed up!") #any code under the if statement should be indented
+elif age < 0:    #check more stuff before moving to the next line
+    print ("You haven't been born yet!")
+else:   #( if none of the above statements are true it goes to the default statement (else)
+    print ("You must be 18+ to sign up!")
+
+
+
+response = input("Would you like some food? (Y/N): ")
+
+if response == "Y": # (=) the assignment operator and (==) is the comparison
+    print("Have some food!")
+else:
+    print("No food for you!")
+
+
+
+name = input("Enter your name: ")
+
+if name == "":
+    print("Please enter a name")
+else:
+    print(f"Hello {name}")
+
+
+
+
+
+for_sale = True
+
+
+if for_sale: # can just use the boolean variable in place of a condition because a condition will evaluate to be true or false
+    print("This item is for sale")
+else:
+    print("This item is not for sale")
+
+
+
+
+#python calculator
+
+operator = input("Enter an operator(+ - * /): "
+num1 = float(input("Enter the First Number: "))
+num2 = float(input("Enter the Second Number: "))
+
+if operator == "+":
+    result = num1 + num2
+    print(result)
+elif operator == "-":
+    result = num1 - num2
+    print(result)
+elif operator == "*":
+    result = num1 * num2
+    print(result)
+elif operator == "/":
+    result = num1 / num2
+    print(result)
+else:
+    print(f"Operator '{operator}' not a valid operator")
+
+
+
+
+#weight conversion program
+
+weight = float(input("Enter your weight: "))
+unit = input("Enter unit (K for Kilogram; L for Pounds: ")
+
+if unit == "K":
+    weight = weight * 2.205
+    unit = "lbs"
+    print(f"Your weight is: {round(weight, 1)} {unit}")
+elif unit == "L":
+    weight = weight / 2.205
+    unit = "Kg"
+    print(f"Your weight is: {round(weight, 1)} {unit}")
+else:
+    print(f"{unit} is not a valid unit")
+
+
+
+
+
+
+
+# logical operators = evaluate multiple conditions (or, and, not)
+#                       or  = at least one condition must be true
+#                       and = both conditions must be true
+#                       not = inverts the condition (not False, not True)
+
+#or
+temp = 36
+is_raining = True
+
+if temp > 35 or temp <0 or is_raining:
+    print("The outdoor event is cancelled")
+else:
+    print("The outdoor event is still scheduled")
+
+
+
+#and
+temp = 23
+is_sunny = True
+
+if temp >= 28 and is_sunny:
+    print("It is Hot Outside")
+    print("It is Sunny")
+elif temp <= 0 and is_sunny:
+    print("it is COLD outside")
+    print("It is Sunny")
+elif 0 < temp < 28 and is_sunny:
+    print("it is Warm outside")
+    print("It is Sunny")
+
+
+
+# logical operators = evaluate multiple conditions (or, and, not)
+#                       or  = at least one condition must be true
+#                       and = both conditions must be true
+#                       not = inverts the condition (not False, not True)
+
+
+#and
+temp = 23
+is_sunny = False
+
+if temp >= 28 and is_sunny:
+    print("It is Hot Outside")
+    print("It is Sunny")
+elif temp <= 0 and is_sunny:
+    print("it is COLD outside")
+    print("It is Sunny")
+elif 0 < temp < 28 and is_sunny:
+    print("it is Warm outside")
+    print("It is Sunny")
+
+#not
+
+if temp >= 28 and not is_sunny:
+    print("It is Hot Outside")
+    print("It is Cloudy")
+elif temp <= 0 and not is_sunny:
+    print("it is COLD outside")
+    print("It is Cloudy")
+elif 0 < temp < 28 and not is_sunny:
+    print("it is Warm outside")
+    print("It is Cloudy")
+
+
+
+
+# conditional expression = A one-line shortcut for the if-else statement (ternary operator)
+#                          Print or assign one of the two values based on a condition
+#                          X if condition else Y
+
+num = 5
+a = 6
+b =  7
+age = 13
+user_role = "admin"
+
+# print("Positive" if num > 0 else "Negative")
+# result = "Even" if num % 2 == 0 else "odd"
+# max_num = a if a > b else b
+# min_num = a if a < b else b
+#status = "Adult" if age >= 18 else "Child"
+#weather = "HOT" if temperature >20 else "COLD"
+
+access_level = "Full Access" if user_role=="admin" else "Access Denied"
+
+print(access_level)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
